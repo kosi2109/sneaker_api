@@ -31,14 +31,40 @@ const orderSchema = mongoose.Schema({
         default : "pending"
     },
     order_items : {
-        type : String
+        type : [mongoose.Schema.Types.ObjectId],
+        ref : "OrderItem",
+        default : []
     }
 })
 
 
+const orderItemsSchema = mongoose.Schema({
+    item :{
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "Product",
+        required : true
+    },
+    quantity :{
+        type : Number,
+        required : true
+    },
+    option : {
+        size : {
+            type : String,
+            required : true
+        },
+        color : {
+            type : String,
+            required : true
+        }
+    }
+})
+
 const Order = mongoose.model("Order",orderSchema)
 
-module.exports = Order
+const OrderItem = mongoose.model("OrderItem",orderItemsSchema)
+
+module.exports = {Order,OrderItem}
 
 
 
