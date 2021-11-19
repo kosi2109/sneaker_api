@@ -1,4 +1,5 @@
 const {Order,OrderItem} = require("../models/order")
+const Product = require("../models/product")
 
 
 const getOrders = async (req,res)=>{
@@ -8,7 +9,14 @@ const getOrders = async (req,res)=>{
 
 const createOrder = async (req,res)=>{
     let order_items_ids = Promise.all(req.body.order_items.map(async (i)=> {
+        let product = await Product.findById(i.item).populate("option.color").populate("option.stock.size")
+        
+        console.log("original",product.option[i.option.color].stock[i.option.size].stock)
+        let updateQuantity = product.option[i.option.color].stock[i.option.size].stock - i.quantity
         let item =   new OrderItem({item:i.item,quantity:i.quantity,option:i.option})
+        product.option[i.option.color].stock[i.option.size].stock = updateQuantity
+        await product.save()
+        console.log("update",product.option[i.option.color].stock[i.option.size].stock)
         item = await item.save()
         return item._id
     }))
@@ -26,8 +34,9 @@ const createOrder = async (req,res)=>{
     
    
     try {
+
         const newOrder = new Order(data)
-        await newOrder.save()
+        // await newOrder.save()
         res.json(newOrder)
     } catch (error) {
         res.json(error.message)
