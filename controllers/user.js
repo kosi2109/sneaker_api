@@ -11,14 +11,14 @@ const signup = async (req,res)=>{
 
     const existingUser = await User.findOne({email:email})
 
-    if(existingUser) return res.json("This email is already exist")
+    if(existingUser) return res.json({error:"This email is already exist"})
     
     try {
         const hexPass = await bcrypt.hash(password,10)
         const newUser = new User({firstName:firstName,lastName:lastName,email:email,password:hexPass})
 
         await newUser.save()
-        res.json(newUser)
+        res.json({user:newUser})
     } catch (error) {
         res.json(error.message)
     }
@@ -31,7 +31,7 @@ const login = async (req,res)=>{
 
     const user = await User.findOne({email:email})
 
-    if (!user) res.json("User Not exist")
+    if (!user) res.json({error:"User Not exist"})
 
     const checkPas = await bcrypt.compare(password,user.password)
    
@@ -42,13 +42,13 @@ const login = async (req,res)=>{
 
         }, process.env.SECRET)
         if(user.isAdmin){
-            res.json({email:user.email ,isAdmin:user.isAdmin, token:token})
+            res.json({user:{email:user.email ,isAdmin:user.isAdmin, token:token}})
         }else{
-            res.json({email:user.email, token:token})
+            res.json({user:{email:user.email, token:token}})
         }
 
     }else{
-        res.json("password incorrect")
+        res.json({error:"password incorrect"})
     }
 
 }

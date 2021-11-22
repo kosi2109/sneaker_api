@@ -12,6 +12,7 @@ const jwtAuth = ()=>{
             {url : /\/api\/v1\/brands(.*)/,method:['GET','OPTION']},
             {url : /\/api\/v1\/colors(.*)/,method:['GET','OPTION']},
             {url : /\/api\/v1\/sizes(.*)/,method:['GET','OPTION']},
+            {url : /\/api\/v1\/orders(.*)/,method:['POST','OPTION']},
             '/api/v1/users/login',
             '/api/v1/users/signup',
             
