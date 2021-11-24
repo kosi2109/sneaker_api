@@ -6,6 +6,9 @@ const orderSchema = mongoose.Schema({
         type: String,
         default : uuidv4()
     },
+    userId:{
+        type: String
+    },
     name : {
         type : String,
         required : true

@@ -31,7 +31,7 @@ const getFeatureProducts = async (req,res) =>{
 }
 
 
-const newProduct = async (req, res) => {
+const newProduct = async (req, res) => { 
   const brand = await Brand.findById(req.body.brand);
   if (!brand) return res.status(400).send("Invalid Brand");
 

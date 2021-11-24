@@ -31,6 +31,7 @@ const createOrder = async (req, res) => {
   order_items_ids = await order_items_ids;
   const data = {
     order_id: req.body.order_id,
+    userId: req.body.userId,
     name: req.body.name,
     address: req.body.address,
     phone: req.body.phone,

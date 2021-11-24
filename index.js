@@ -33,7 +33,7 @@ app.get('/',(req,res)=>{
     res.send("welcome")
 })
 
-app.use(`${apiUrl}brands`,BrandRoute)
+app.use(`${apiUrl}brands`, BrandRoute)
 app.use(`${apiUrl}products`,ProductRoute)
 app.use(`${apiUrl}colors`,ColorRoute)
 app.use(`${apiUrl}sizes`,SizeRoute)
