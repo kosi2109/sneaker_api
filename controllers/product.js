@@ -2,6 +2,7 @@ const Brand = require("../models/brand");
 const Product = require("../models/product");
 
 const getProducts = async (req, res) => {
+  
   const products = await Product.find() 
     .populate("brand")
     .populate("option.color")
@@ -33,6 +34,8 @@ const getFeatureProducts = async (req,res) =>{
 
 const newProduct = async (req, res) => { 
   const brand = await Brand.findById(req.body.brand);
+  if(!req.userId) res.status(400).json("User Is not Authenticate")
+  if(!req.isAdmin) res.status(400).json("User Is not Authenticate To Post")
   if (!brand) return res.status(400).send("Invalid Brand");
 
   try {

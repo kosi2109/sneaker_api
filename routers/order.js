@@ -1,9 +1,10 @@
 const express = require("express")
 const router = express.Router()
-const {getOrders,createOrder} = require("../controllers/order")
+const {userOrder,createOrder,userOrders} = require("../controllers/order")
 
 
-router.get('/',getOrders)
+router.get('/:id',userOrders)
+router.get('/:userId/:orderId',userOrder)
 router.post('/',createOrder)
 
 

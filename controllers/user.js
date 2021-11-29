@@ -51,6 +51,21 @@ const login = async (req,res)=>{
 
 }
 
+const logout = async (req,res)=>{
+    const user = await User.findById(req.userId)
+
+
+
+        const token = jwt.sign({
+            userId : user.id,
+            isAdmin : user.isAdmin
+
+        }, process.env.SECRET,{expiresIn:"120"})
+        res.json({result:{user_id:user._id, token:token}})
+
+
+}
+
 const getUser = async (req,res)=>{
     const {id} = req.params
     try {
@@ -63,4 +78,4 @@ const getUser = async (req,res)=>{
 
 
 
-module.exports = {signup,login,getUser}
+module.exports = {signup,login,getUser,logout}

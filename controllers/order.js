@@ -1,10 +1,7 @@
 const { Order, OrderItem } = require("../models/order");
 const Product = require("../models/product");
+const User = require("../models/user")
 
-const getOrders = async (req, res) => {
-  const orders = await Order.find();
-  res.json(orders);
-};
 
 const createOrder = async (req, res) => {
   let order_items_ids = Promise.all(
@@ -49,4 +46,39 @@ const createOrder = async (req, res) => {
   }
 };
 
-module.exports = { getOrders, createOrder };
+
+const userOrders = async (req,res)=>{
+  const {id} = req.params
+  const user = await User.findById(id)
+  if(!user) res.json("User Not Exist")
+
+  try {
+    var orders = [];
+    orders = await Order.find({userId:user._id}).populate("order_items")
+
+    res.json(orders)
+  } catch (error) {
+    res.json(error.message)
+  }
+
+}
+
+const userOrder = async (req,res)=>{
+  // const {userId,orderId} = req.params
+  // const user = await User.findById(userId)
+  // const order = await Order.findById(orderId)
+
+  // if(!user) res.json("User Not Exist")
+  // if(!order) res.json("Order Not Exist")
+  // if (order.userId !== user.id) res.json("You are not Authenticated")
+  // try {
+    
+  //   const order = await Order.findById(orderId).populate("order_items")
+  //   res.json(order)
+  // } catch (error) {
+  //   res.json(error.message)
+  // }
+
+}
+
+module.exports = {  createOrder ,userOrders , userOrder};

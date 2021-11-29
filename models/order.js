@@ -33,11 +33,10 @@ const orderSchema = mongoose.Schema({
         type : String,
         default : "pending"
     },
-    order_items : {
-        type : [mongoose.Schema.Types.ObjectId],
-        ref : "OrderItem",
-        default : []
-    }
+    order_items : [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "OrderItem"
+    }]
 })
 
 
