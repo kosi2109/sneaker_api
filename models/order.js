@@ -36,7 +36,11 @@ const orderSchema = mongoose.Schema({
     order_items : [{
         type : mongoose.Schema.Types.ObjectId,
         ref : "OrderItem"
-    }]
+    }],
+    total:{
+        type : Number,
+        default : 0,
+    }
 })
 
 

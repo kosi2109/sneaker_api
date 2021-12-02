@@ -1,10 +1,9 @@
 const express = require("express")
 const router = express.Router()
-const {getProducts , newProduct ,getProductsByBrand ,getFeatureProducts} = require("../controllers/product")
-const {auth} = require("../helper/auth")
+const {getProducts ,getProductsByBrand ,getFeatureProducts} = require("../controllers/product")
+
 
 router.get('/',getProducts)
-router.post('/',auth,newProduct)
 router.get('/b/:brand',getProductsByBrand)
 router.get('/feature-products',getFeatureProducts)
 

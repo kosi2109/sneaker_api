@@ -1,10 +1,10 @@
 const express = require("express")
 const router = express.Router()
-const {getBrands,createBrand} = require("../controllers/brand")
+const {getBrands} = require("../controllers/brand")
 
 
 router.get('/',getBrands)
-router.post('/',createBrand)
+// router.post('/',createBrand)
 
 
 

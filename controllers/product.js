@@ -6,7 +6,7 @@ const getProducts = async (req, res) => {
   const products = await Product.find() 
     .populate("brand")
     .populate("option.color")
-    .populate("option.stock.size" , "size")
+    .populate("option.stock.size" , "size") 
     
   res.json(products);
 };
@@ -14,6 +14,8 @@ const getProducts = async (req, res) => {
 const getProductsByBrand = async (req,res) =>{
   const {brand} = req.params
   const getBrand = await Brand.findOne({brand:brand})
+  if (!getBrand) res.json({error:404})
+
   const products = await Product.find({brand:getBrand.id}) 
     .populate("brand")
     .populate("option.color")
@@ -32,29 +34,29 @@ const getFeatureProducts = async (req,res) =>{
 }
 
 
-const newProduct = async (req, res) => { 
-  const brand = await Brand.findById(req.body.brand);
-  if(!req.userId) res.status(400).json("User Is not Authenticate")
-  if(!req.isAdmin) res.status(400).json("User Is not Authenticate To Post")
-  if (!brand) return res.status(400).send("Invalid Brand");
+// const newProduct = async (req, res) => { 
+//   const brand = await Brand.findById(req.body.brand);
+//   if(!req.userId) res.status(400).json("User Is not Authenticate")
+//   if(!req.isAdmin) res.status(400).json("User Is not Authenticate To Post")
+//   if (!brand) return res.status(400).send("Invalid Brand");
 
-  try {
-    const newProduct = new Product({
-      brand: req.body.brand,
-      name: req.body.name,
-      isFeatured: req.body.isFeatured,
-      description: req.body.description,
-      richDescription: req.body.richDescription,
-      releseDate: req.body.releseDate,
-      option: req.body.option,
-      featureImage: req.body.featureImage,
-    });
-    await newProduct.save();
+//   try {
+//     const newProduct = new Product({
+//       brand: req.body.brand,
+//       name: req.body.name,
+//       isFeatured: req.body.isFeatured,
+//       description: req.body.description,
+//       richDescription: req.body.richDescription,
+//       releseDate: req.body.releseDate,
+//       option: req.body.option,
+//       featureImage: req.body.featureImage,
+//     });
+//     await newProduct.save();
 
-    res.json(newProduct);
-  } catch (error) {
-    res.send(error.message);
-  }
-};
+//     res.json(newProduct);
+//   } catch (error) {
+//     res.send(error.message);
+//   }
+// };
 
-module.exports = { getProducts, newProduct , getProductsByBrand ,getFeatureProducts };
+module.exports = { getProducts , getProductsByBrand ,getFeatureProducts };

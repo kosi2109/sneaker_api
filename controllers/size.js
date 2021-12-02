@@ -7,19 +7,19 @@ const getSizes = async (req,res)=>{
 }
 
 
-const createSize = async (req,res)=>{
+// const createSize = async (req,res)=>{
 
-    try {
-        const newSize= new Size({
-            size:req.body.size,
-        })
-        await newSize.save()
+//     try {
+//         const newSize= new Size({
+//             size:req.body.size,
+//         })
+//         await newSize.save()
 
-        res.json(newSize)
-    } catch (error) {
-        res.send(error.message)
-    }
+//         res.json(newSize)
+//     } catch (error) {
+//         res.send(error.message)
+//     }
     
-}
+// }
 
-module.exports = {getSizes,createSize}
+module.exports = {getSizes}

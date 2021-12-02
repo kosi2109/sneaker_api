@@ -7,20 +7,20 @@ const getColor = async (req,res)=>{
 }
 
 
-const createColor = async (req,res)=>{
+// const createColor = async (req,res)=>{
 
-    try {
-        const newColor= new Color({
-            color: req.body.color,
-            hex: req.body.hex,
-        })
-        await newColor.save()
+//     try {
+//         const newColor= new Color({
+//             color: req.body.color,
+//             hex: req.body.hex,
+//         })
+//         await newColor.save()
 
-        res.json(newColor)
-    } catch (error) {
-        res.send(error.message)
-    }
+//         res.json(newColor)
+//     } catch (error) {
+//         res.send(error.message)
+//     }
     
-}
+// }
 
-module.exports = {getColor,createColor}
+module.exports = {getColor}

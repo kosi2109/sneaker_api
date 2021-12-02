@@ -1,10 +1,10 @@
 const express = require("express")
 const router = express.Router()
-const {createColor,getColor} = require("../controllers/color")
+const {getColor} = require("../controllers/color")
 
 
 router.get('/',getColor)
-router.post('/',createColor)
+// router.post('/',createColor)
 
 
 

@@ -8,25 +8,25 @@ const getBrands = async (req,res)=>{
 
 
 
-const createBrand = async (req,res)=>{
+// const createBrand = async (req,res)=>{
 
-    try {
-        const newBrand = new Brand({
-            brand:req.body.brand,
-            icon: req.body.icon,
-        })
-        await newBrand.save()
+//     try {
+//         const newBrand = new Brand({
+//             brand:req.body.brand,
+//             icon: req.body.icon,
+//         })
+//         await newBrand.save()
 
-        res.json(newBrand)
-    } catch (error) {
-        res.send(error.message)
-    }
+//         res.json(newBrand)
+//     } catch (error) {
+//         res.send(error.message)
+//     }
     
-}
+// }
 
 
 
 
 
 
-module.exports = {getBrands,createBrand}
+module.exports = {getBrands}
