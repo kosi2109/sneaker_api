@@ -18,7 +18,7 @@ app.use(errorHandaler);
 
 // input from env
 const DATABASE = process.env.DATABASE;
-const BASEURL = process.env.BASEURL;
+const BASEURL = process.env.PORT || 3000;
 const apiUrl = "/api/v1/";
 
 // routes
