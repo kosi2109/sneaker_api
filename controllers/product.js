@@ -2,39 +2,36 @@ const Brand = require("../models/brand");
 const Product = require("../models/product");
 
 const getProducts = async (req, res) => {
-  
-  const products = await Product.find() 
+  const products = await Product.find()
     .populate("brand")
     .populate("option.color")
-    .populate("option.stock.size" , "size") 
-    
+    .populate("option.stock.size", "size");
+
   res.json(products);
 };
 
-const getProductsByBrand = async (req,res) =>{
-  const {brand} = req.params
-  const getBrand = await Brand.findOne({brand:brand})
-  if (!getBrand) res.json({error:404})
+const getProductsByBrand = async (req, res) => {
+  const { brand } = req.params;
+  const getBrand = await Brand.findOne({ brand: brand });
+  if (!getBrand) res.json({ error: 404 });
 
-  const products = await Product.find({brand:getBrand.id}) 
+  const products = await Product.find({ brand: getBrand.id })
     .populate("brand")
     .populate("option.color")
-    .populate("option.stock.size" , "size")
-    
+    .populate("option.stock.size", "size");
+
   res.json(products);
-}
+};
 
-const getFeatureProducts = async (req,res) =>{
-  
-  const products = await Product.find({isFeatured:true}).select("name description featureImage brand")
-    .populate("brand")
-    
-    
+const getFeatureProducts = async (req, res) => {
+  const products = await Product.find({ isFeatured: true })
+    .select("name description featureImage brand")
+    .populate("brand");
+
   res.json(products);
-}
+};
 
-
-// const newProduct = async (req, res) => { 
+// const newProduct = async (req, res) => {
 //   const brand = await Brand.findById(req.body.brand);
 //   if(!req.userId) res.status(400).json("User Is not Authenticate")
 //   if(!req.isAdmin) res.status(400).json("User Is not Authenticate To Post")
@@ -59,4 +56,4 @@ const getFeatureProducts = async (req,res) =>{
 //   }
 // };
 
-module.exports = { getProducts , getProductsByBrand ,getFeatureProducts };
+module.exports = { getProducts, getProductsByBrand, getFeatureProducts };

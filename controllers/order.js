@@ -54,7 +54,9 @@ const userOrders = async (req, res) => {
 
   try {
     var orders = [];
-    orders = await Order.find({ userId: user._id }).populate("order_items").sort({"order_date":-1});
+    orders = await Order.find({ userId: user._id })
+      .populate("order_items")
+      .sort({ order_date: -1 });
 
     res.json(orders);
   } catch (error) {
@@ -95,12 +97,12 @@ const userOrder = async (req, res) => {
     const items = await orderItems;
     let newData = {
       order_id: order.order_id,
-    name: order.name,
-    address: order.address,
-    phone: order.phone,
-    email: order.email,
-    status: order.status,
-    total: order.total,
+      name: order.name,
+      address: order.address,
+      phone: order.phone,
+      email: order.email,
+      status: order.status,
+      total: order.total,
       order_items: items,
     };
     res.json(newData);

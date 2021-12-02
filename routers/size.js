@@ -1,13 +1,7 @@
-const express = require("express")
-const router = express.Router()
-const {getSizes} = require("../controllers/size")
+const express = require("express");
+const router = express.Router();
+const { getSizes } = require("../controllers/size");
 
+router.get("/", getSizes);
 
-router.get('/',getSizes)
-
-
-
-
-
-
-module.exports = router
+module.exports = router;

@@ -1,11 +1,9 @@
-const Size = require("../models/size")
+const Size = require("../models/size");
 
-
-const getSizes = async (req,res)=>{
-    const sizes = await Size.find()
-    res.send(sizes)
-}
-
+const getSizes = async (req, res) => {
+  const sizes = await Size.find();
+  res.send(sizes);
+};
 
 // const createSize = async (req,res)=>{
 
@@ -19,7 +17,7 @@ const getSizes = async (req,res)=>{
 //     } catch (error) {
 //         res.send(error.message)
 //     }
-    
+
 // }
 
-module.exports = {getSizes}
+module.exports = { getSizes };

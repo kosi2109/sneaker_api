@@ -1,11 +1,9 @@
-const Color = require("../models/color")
+const Color = require("../models/color");
 
-
-const getColor = async (req,res)=>{
-    const colors = await Color.find()
-    res.send(colors)
-}
-
+const getColor = async (req, res) => {
+  const colors = await Color.find();
+  res.send(colors);
+};
 
 // const createColor = async (req,res)=>{
 
@@ -20,7 +18,7 @@ const getColor = async (req,res)=>{
 //     } catch (error) {
 //         res.send(error.message)
 //     }
-    
+
 // }
 
-module.exports = {getColor}
+module.exports = { getColor };

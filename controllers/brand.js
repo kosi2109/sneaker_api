@@ -1,12 +1,9 @@
-const Brand = require("../models/brand")
+const Brand = require("../models/brand");
 
-
-const getBrands = async (req,res)=>{
-    const brands = await Brand.find()
-    res.send(brands)
-}
-
-
+const getBrands = async (req, res) => {
+  const brands = await Brand.find();
+  res.send(brands);
+};
 
 // const createBrand = async (req,res)=>{
 
@@ -21,12 +18,7 @@ const getBrands = async (req,res)=>{
 //     } catch (error) {
 //         res.send(error.message)
 //     }
-    
+
 // }
 
-
-
-
-
-
-module.exports = {getBrands}
+module.exports = { getBrands };
