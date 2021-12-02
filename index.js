@@ -5,10 +5,10 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const app = express();
 const errorHandaler = require("./helper/error-handaler");
-var corsOptions = {
-    origin: 'https://kalli.netlify.app',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-  }
+// var corsOptions = {
+//     origin: 'https://kalli.netlify.app',
+//     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+//   }
   
 // middleware
 app.use(cors(corsOptions));
