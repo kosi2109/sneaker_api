@@ -66,7 +66,8 @@ const userOrders = async (req, res) => {
 
 const userOrder = async (req, res) => {
   const { orderId } = req.params;
-  const order = await Order.findOne({ order_id: orderId }).populate(
+ 
+  const order = await Order.findById(orderId).populate(
     "order_items"
   );
 
